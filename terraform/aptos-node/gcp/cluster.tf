@@ -197,7 +197,7 @@ resource "google_container_node_pool" "core" {
 
   lifecycle {
     ignore_changes = [
-      resource_labels,
+      node_config,
     ]
   }
 
@@ -256,7 +256,7 @@ resource "google_container_node_pool" "utilities" {
 
   lifecycle {
     ignore_changes = [
-      resource_labels,
+      node_config,
     ]
   }
 
@@ -315,7 +315,7 @@ resource "google_container_node_pool" "validators" {
 
   lifecycle {
     ignore_changes = [
-      resource_labels,
+      node_config,
     ]
   }
 
