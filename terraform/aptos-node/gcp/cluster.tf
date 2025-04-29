@@ -195,6 +195,12 @@ resource "google_container_node_pool" "core" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      resource_labels,
+    ]
+  }
+
   autoscaling {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
@@ -248,6 +254,12 @@ resource "google_container_node_pool" "utilities" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      resource_labels,
+    ]
+  }
+
   autoscaling {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
@@ -299,6 +311,12 @@ resource "google_container_node_pool" "validators" {
         effect = "NO_EXECUTE"
       }
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      resource_labels,
+    ]
   }
 
   autoscaling {
