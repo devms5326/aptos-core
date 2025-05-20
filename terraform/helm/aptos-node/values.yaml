@@ -65,7 +65,7 @@ validator:
     # -- Image tag to use for validator images. If set, overrides `imageTag`
     tag:
     # -- Image pull policy to use for validator images
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
   resources:
     limits:
       cpu: 30
