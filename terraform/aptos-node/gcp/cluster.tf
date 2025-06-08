@@ -162,7 +162,7 @@ resource "google_container_node_pool" "core" {
   name       = "core"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "core", "core")
+  node_count = lookup(var.node_pool_sizes, "core", null)
 
   node_config {
     machine_type    = var.core_instance_type
@@ -199,6 +199,13 @@ resource "google_container_node_pool" "core" {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
   }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
+  }
 }
 
 resource "google_container_node_pool" "utilities" {
@@ -207,7 +214,7 @@ resource "google_container_node_pool" "utilities" {
   name       = "utilities"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "utilities", "utilities")
+  node_count = lookup(var.node_pool_sizes, "utilities", null)
 
   node_config {
     machine_type    = var.utility_instance_type
@@ -252,6 +259,13 @@ resource "google_container_node_pool" "utilities" {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
   }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
+  }
 }
 
 resource "google_container_node_pool" "validators" {
@@ -260,7 +274,7 @@ resource "google_container_node_pool" "validators" {
   name       = "validators"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "validators", "validators")
+  node_count = lookup(var.node_pool_sizes, "validators", null)
 
   node_config {
     machine_type    = var.validator_instance_type
@@ -304,5 +318,12 @@ resource "google_container_node_pool" "validators" {
   autoscaling {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
+  }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
   }
 }
