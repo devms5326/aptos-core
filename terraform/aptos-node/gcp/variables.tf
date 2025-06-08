@@ -196,7 +196,7 @@ variable "utility_instance_type" {
 variable "validator_instance_type" {
   description = "Instance type used for validator and fullnodes"
   type        = string
-  default     = "t2d-standard-60"
+  default     = "c4-standard-48"
 }
 
 variable "utility_instance_enable_taint" {

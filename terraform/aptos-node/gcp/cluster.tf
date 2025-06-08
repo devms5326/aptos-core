@@ -199,6 +199,13 @@ resource "google_container_node_pool" "core" {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
   }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
+  }
 }
 
 resource "google_container_node_pool" "utilities" {
@@ -252,6 +259,13 @@ resource "google_container_node_pool" "utilities" {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
   }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
+  }
 }
 
 resource "google_container_node_pool" "validators" {
@@ -304,5 +318,12 @@ resource "google_container_node_pool" "validators" {
   autoscaling {
     min_node_count = 0
     max_node_count = var.gke_autoscaling_max_node_count
+  }
+
+  lifecycle {
+    ignore_changes = [
+      node_config[0].resource_labels,
+      node_config[0].tags,
+    ]
   }
 }
