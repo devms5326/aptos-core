@@ -162,7 +162,7 @@ resource "google_container_node_pool" "core" {
   name       = "core"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "core", null)
+  node_count = lookup(var.node_pool_sizes, "core", "core")
 
   node_config {
     machine_type    = var.core_instance_type
@@ -207,7 +207,7 @@ resource "google_container_node_pool" "utilities" {
   name       = "utilities"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "utilities", null)
+  node_count = lookup(var.node_pool_sizes, "utilities", "utilities")
 
   node_config {
     machine_type    = var.utility_instance_type
@@ -260,7 +260,7 @@ resource "google_container_node_pool" "validators" {
   name       = "validators"
   location   = local.location
   cluster    = google_container_cluster.aptos.name
-  node_count = lookup(var.node_pool_sizes, "validators", null)
+  node_count = lookup(var.node_pool_sizes, "validators", "validators")
 
   node_config {
     machine_type    = var.validator_instance_type
